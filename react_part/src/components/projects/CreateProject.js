@@ -1,37 +1,40 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { createProject } from '../../store/actions/projectActions'
-import { Redirect } from 'react-router-dom'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { createProject } from "../../store/actions/projectActions";
+import { Redirect } from "react-router-dom";
 
 class CreateProject extends Component {
   state = {
-    title: '',
-    content: ''
-  }
+    title: "",
+    content: "",
+  };
   handleChange = (e) => {
     this.setState({
-      [e.target.id]: e.target.value
-    })
-  }
+      [e.target.id]: e.target.value,
+    });
+  };
   handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(this.state);
     this.props.createProject(this.state);
-    this.props.history.push('/');
-  }
+    this.props.history.push("/");
+  };
   render() {
     const { auth } = this.props;
-    if (!auth.uid) return <Redirect to='/signin' /> 
+    if (!auth.uid) return <Redirect to="/signin" />;
     return (
       <div className="container">
         <form className="" onSubmit={this.handleSubmit}>
           <h5 className="white-text text-darken-3">Create a new post</h5>
           <div className="input-field">
-            <input type="text" id='title' onChange={this.handleChange} />
+            <input type="text" id="title" onChange={this.handleChange} />
             <label htmlFor="title">Post Title</label>
           </div>
           <div className="input-field">
-            <textarea id="content" className="materialize-textarea eh" onChange={this.handleChange}></textarea>
+            <textarea
+              id="content"
+              className="materialize-textarea eh"
+              onChange={this.handleChange}
+            ></textarea>
             <label htmlFor="content">Content</label>
           </div>
           <div className="input-field">
@@ -39,20 +42,20 @@ class CreateProject extends Component {
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.firebase.auth
-  }
-}
+    auth: state.firebase.auth,
+  };
+};
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    createProject: (project) => dispatch(createProject(project))
-  }
-}
+    createProject: (project) => dispatch(createProject(project)),
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateProject)
+export default connect(mapStateToProps, mapDispatchToProps)(CreateProject);

@@ -15,6 +15,7 @@ class Dashboard extends Component {
       <div className="dashboard container">
         <div className="row">
           <div className="col s12 m6">
+           <center> <span className="grey-text text-center">Click on post to view content</span></center>
             <ProjectList projects={projects} />
           </div>
           <div className="col s12 m5 offset-m1">
@@ -27,7 +28,6 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log(state);
   return {
     projects: state.firestore.ordered.projects,
     auth: state.firebase.auth,
