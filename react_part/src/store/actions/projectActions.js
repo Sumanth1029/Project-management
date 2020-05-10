@@ -17,3 +17,7 @@ export const createProject = (project) => {
     });
   }
 };
+
+export const createMedia=()=>{
+  
+}
